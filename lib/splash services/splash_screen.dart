@@ -1,5 +1,7 @@
+import 'dart:async';
+
+import 'package:farwest_fitness/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,6 +12,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(Duration(seconds: 3), () {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
+    });
+  }
+
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black87,
@@ -17,11 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
       width: double.infinity,
       child: Column(
         children: [
-          Image.asset("images/farwest_logo.jpg"),
-          SpinKitThreeBounce(
-            color: Colors.yellow,
-            size: 40,
-          )
+          Image.asset("images/logo.jpg"),
         ],
       ),
     );

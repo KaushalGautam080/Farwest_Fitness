@@ -4,6 +4,7 @@ import 'package:farwest_fitness/screens/contacts_us.dart';
 import 'package:farwest_fitness/screens/gallery.dart';
 import 'package:farwest_fitness/screens/services.dart';
 import 'package:farwest_fitness/screens/trainers.dart';
+import 'package:farwest_fitness/splash%20services/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Farwest Fitness| Let\'s Get Healthier Together',
-      home: const HomePage(),
+      home: HomePage(),
       routes: {
         '/home': (ctx) => HomePage(),
         '/about us': (ctx) => AboutUs(),
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/gallery': (ctx) => Gallery(),
         '/trainers': (ctx) => Trainers(),
         '/contact': (ctx) => ContactUs(),
+        '/splashscreen': (ctx) => SplashScreen(),
       },
       initialRoute: "/home",
     );

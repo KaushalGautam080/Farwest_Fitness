@@ -9,12 +9,12 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(),
       child: TextButton(
         onPressed: onTap,
         child: Text(
           title,
-          style: TextStyle(color: Colors.black87, fontSize: 16),
+          style: TextStyle(
+              color: Colors.black87, fontSize: 16, fontFamily: 'Righteous'),
         ),
       ),
     );
