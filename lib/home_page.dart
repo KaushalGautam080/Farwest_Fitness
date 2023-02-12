@@ -1,7 +1,7 @@
-import 'package:farwest_fitness/widgets/button.dart';
+import 'package:farwest_fitness/footer/home_page_footer.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import 'Header/header.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,120 +14,189 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(40),
-                bottomLeft: Radius.circular(40)),
-          ),
-          backgroundColor: Colors.yellow,
-          title: Text(
-            "Farwest Fitness ",
-            style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ScrollPhysics(parent: BouncingScrollPhysics()),
-        child: Column(
-          children: [
-            // navigation bar
-            Container(
-              height: 50,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 600,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          image: const DecorationImage(
+                            image: AssetImage("images/mohan.jpg"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 100),
+                              child: Container(
+                                height: 300,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.yellow),
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(300),
+                                  image: DecorationImage(
+                                    image: AssetImage("images/logo.jpg"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                                top: 200,
+                                left: 1000,
+                                child: Container(
+                                  height: 400,
+                                  width: 400,
+                                  child: Column(
+                                    children: const [
+                                      Text(
+                                        "SHAPE YOUR BODY",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text.rich(
+                                        TextSpan(
+                                            text: 'BE',
+                                            style: TextStyle(
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontFamily: 'Kanit',
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: '  STRONG',
+                                                style: TextStyle(
+                                                  fontSize: 40,
+                                                  color: Colors.orange,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Kanit',
+                                                ),
+                                              ),
+                                            ]),
+                                      ),
+                                      Text(
+                                        "TRAINING HARD",
+                                        style: TextStyle(
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontFamily: 'Kanit',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ))
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Header(),
+                ],
+              ),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Icon(
-                      FontAwesomeIcons.dumbbell,
-                      size: 40,
-                    ),
-                    Row(
-                      children: [
-                        Button(
-                            title: "About us",
-                            onTap: () {
-                              Navigator.pushNamed(context, "/about us");
-                            }),
-                        Button(
-                            title: "Services",
-                            onTap: () {
-                              Navigator.pushNamed(context, '/services');
-                            }),
-                        Button(
-                            title: "Gallery",
-                            onTap: () {
-                              Navigator.pushNamed(context, '/gallery');
-                            }),
-                        Button(
-                            title: "Trainers",
-                            onTap: () {
-                              Navigator.pushNamed(context, '/trainers');
-                            }),
-                        Button(
-                            title: "Contact us",
-                            onTap: () {
-                              Navigator.pushNamed(context, '/contact');
-                            }),
-                      ],
+                    Text(
+                      "WHY FARWEST FITNESS ?",
+                      style: TextStyle(
+                          fontFamily: 'Kanit',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 48,
+                          color: Colors.white),
                     ),
                   ],
                 ),
               ),
-            ),
-            // body portion
-            Container(
-              height: 500,
-            ),
-            //footer
-            Container(
-              color: Colors.black87,
-              height: 70,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () async {
-                      print("facebook pressed");
-                      final url =
-                          Uri.http("https://www.facebook.com/farwestfitness");
-                      if (await canLaunchUrl(url)) {
-                        await launchUrl(url);
-                      }
-                    },
-                    icon: Icon(
-                      FontAwesomeIcons.facebook,
-                    ),
-                    color: Colors.blue,
-                  ),
-                  SizedBox(width: 10),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.tiktok,
-                    ),
-                    color: Colors.pink,
-                  ),
-                  SizedBox(width: 10),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.youtube,
-                    ),
-                    color: Colors.red,
-                  ),
-                  SizedBox(width: 10)
-                ],
+              Container(
+                height: 500,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                ),
+                child: Stack(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 50, horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              height: 400,
+                              width: MediaQuery.of(context).size.width / 5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: 400,
+                              width: MediaQuery.of(context).size.width / 5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: 400,
+                              width: MediaQuery.of(context).size.width / 5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: 400,
+                              width: MediaQuery.of(context).size.width / 5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const HomePageFooter(),
+            ],
+          ),
         ),
       ),
     );
